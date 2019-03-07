@@ -50,7 +50,7 @@ jobs:
     steps:
       - checkout
       - run: echo 'export PATH=$HOME/terraform:$HOME/packer:$PATH' >> $BASH_ENV
-      - run: sudo gruntwork-install --module-name "aws-helpers" --repo "https://github.com/gruntwork-io/module-ci" --tag "v0.12.2"
+      - run: sudo -E gruntwork-install --module-name "aws-helpers" --repo "https://github.com/gruntwork-io/module-ci" --tag "v0.12.2"
       - run: sudo gruntwork-install --module-name "git-helpers" --repo "https://github.com/gruntwork-io/module-ci" --tag "v0.12.2"
       - run: sudo gruntwork-install --module-name "build-helpers" --repo "https://github.com/gruntwork-io/module-ci" --tag "v0.12.2"
       # We generally only want to build AMIs on new releases, but when we are setting up AMIs in a new account for the
@@ -74,8 +74,8 @@ workflows:
         requires:
         - build
         filters:
-          #tags:
-          #  only: /^v.*/
+          tags:
+            only: /^v.*/
           branches:
             # test
             only: publish-amis
