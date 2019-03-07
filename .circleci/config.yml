@@ -77,4 +77,5 @@ workflows:
           tags:
             only: /^v.*/
           branches:
+            # test
             only: publish-amis
